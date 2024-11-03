@@ -12,35 +12,116 @@ import {
 } from '../../utils/dateUtils';
 
 describe('getDaysInMonth', () => {
-  it('1월은 31일 수를 반환한다', () => {});
+  it('1월은 31일 수를 반환한다', () => {
+    expect(getDaysInMonth(2024, 1)).toBe(31);
+  });
 
-  it('4월은 30일 일수를 반환한다', () => {});
+  it('4월은 30일 일수를 반환한다', () => {
+    expect(getDaysInMonth(2024, 4)).toBe(30);
+  });
 
-  it('윤년의 2월에 대해 29일을 반환한다', () => {});
+  it('윤년의 2월에 대해 29일을 반환한다', () => {
+    expect(getDaysInMonth(2028, 2)).toBe(29);
+  });
 
-  it('평년의 2월에 대해 28일을 반환한다', () => {});
+  it('평년의 2월에 대해 28일을 반환한다', () => {
+    expect(getDaysInMonth(2026, 2)).toBe(28);
+  });
 
-  it('유효하지 않은 월에 대해 적절히 처리한다', () => {});
+  it('유효하지 않은 월에 대해 적절히 처리한다', () => {
+    expect(getDaysInMonth(2024, 0)).toBe(31);
+    expect(getDaysInMonth(2024, 20)).toBe(31);
+  });
 });
 
 describe('getWeekDates', () => {
-  it('주중의 날짜(수요일)에 대해 올바른 주의 날짜들을 반환한다', () => {});
+  it('주중의 날짜(수요일)에 대해 올바른 주의 날짜들을 반환한다', () => {
+    // 수요일
+    const date = new Date('2024-11-06');
+    const weekDates = getWeekDates(date);
+    expect(weekDates).toHaveLength(7);
+    expect(weekDates[0].toISOString().split('T')[0]).toBe('2024-11-03');
+    expect(weekDates[1].toISOString().split('T')[0]).toBe('2024-11-04');
+    expect(weekDates[2].toISOString().split('T')[0]).toBe('2024-11-05');
+    expect(weekDates[3].toISOString().split('T')[0]).toBe('2024-11-06');
+    expect(weekDates[4].toISOString().split('T')[0]).toBe('2024-11-07');
+    expect(weekDates[5].toISOString().split('T')[0]).toBe('2024-11-08');
+    expect(weekDates[6].toISOString().split('T')[0]).toBe('2024-11-09');
+  });
 
-  it('주의 시작(월요일)에 대해 올바른 주의 날짜들을 반환한다', () => {});
+  it('주의 시작(일요일)에 대해 올바른 주의 날짜들을 반환한다', () => {
+    const date = new Date('2024-11-03');
+    const weekDates = getWeekDates(date);
+    expect(weekDates).toHaveLength(7);
+    expect(weekDates[0].toISOString().split('T')[0]).toBe('2024-11-03');
+    expect(weekDates[1].toISOString().split('T')[0]).toBe('2024-11-04');
+    expect(weekDates[2].toISOString().split('T')[0]).toBe('2024-11-05');
+    expect(weekDates[3].toISOString().split('T')[0]).toBe('2024-11-06');
+    expect(weekDates[4].toISOString().split('T')[0]).toBe('2024-11-07');
+    expect(weekDates[5].toISOString().split('T')[0]).toBe('2024-11-08');
+    expect(weekDates[6].toISOString().split('T')[0]).toBe('2024-11-09');
+  });
 
-  it('주의 끝(일요일)에 대해 올바른 주의 날짜들을 반환한다', () => {});
+  it('주의 끝(토요일)에 대해 올바른 주의 날짜들을 반환한다', () => {
+    const date = new Date('2024-11-02');
+    const weekDates = getWeekDates(date);
+    expect(weekDates).toHaveLength(7);
+    expect(weekDates[0].toISOString().split('T')[0]).toBe('2024-10-27');
+    expect(weekDates[1].toISOString().split('T')[0]).toBe('2024-10-28');
+    expect(weekDates[2].toISOString().split('T')[0]).toBe('2024-10-29');
+    expect(weekDates[3].toISOString().split('T')[0]).toBe('2024-10-30');
+    expect(weekDates[4].toISOString().split('T')[0]).toBe('2024-10-31');
+    expect(weekDates[5].toISOString().split('T')[0]).toBe('2024-11-01');
+    expect(weekDates[6].toISOString().split('T')[0]).toBe('2024-11-02');
+  });
 
-  it('연도를 넘어가는 주의 날짜를 정확히 처리한다 (연말)', () => {});
+  it('연도를 넘어가는 주의 날짜를 정확히 처리한다 (연말)', () => {
+    const date = new Date('2024-12-29');
+    const weekDates = getWeekDates(date);
+    expect(weekDates[0].toISOString().split('T')[0]).toBe('2024-12-29');     
+    expect(weekDates[1].toISOString().split('T')[0]).toBe('2024-12-30');
+    expect(weekDates[2].toISOString().split('T')[0]).toBe('2024-12-31');
+    expect(weekDates[3].toISOString().split('T')[0]).toBe('2025-01-01');
+    expect(weekDates[4].toISOString().split('T')[0]).toBe('2025-01-02');
+    expect(weekDates[5].toISOString().split('T')[0]).toBe('2025-01-03');
+    expect(weekDates[6].toISOString().split('T')[0]).toBe('2025-01-04');
+  });
 
-  it('연도를 넘어가는 주의 날짜를 정확히 처리한다 (연초)', () => {});
+  it('연도를 넘어가는 주의 날짜를 정확히 처리한다 (연초)', () => {
+    const date = new Date('2025-01-02');
+    const weekDates = getWeekDates(date);
+    expect(weekDates[0].toISOString().split('T')[0]).toBe('2024-12-29');     
+    expect(weekDates[1].toISOString().split('T')[0]).toBe('2024-12-30');
+    expect(weekDates[2].toISOString().split('T')[0]).toBe('2024-12-31');
+    expect(weekDates[3].toISOString().split('T')[0]).toBe('2025-01-01');
+    expect(weekDates[4].toISOString().split('T')[0]).toBe('2025-01-02');
+    expect(weekDates[5].toISOString().split('T')[0]).toBe('2025-01-03');
+    expect(weekDates[6].toISOString().split('T')[0]).toBe('2025-01-04');
+  });
 
-  it('윤년의 2월 29일을 포함한 주를 올바르게 처리한다', () => {});
+  it('윤년의 2월 29일을 포함한 주를 올바르게 처리한다', () => {
+    const date = new Date('2024-02-29');
+    const weekDates = getWeekDates(date);
+    expect(weekDates[0].toISOString().split('T')[0]).toBe('2024-02-25');     
+    expect(weekDates[1].toISOString().split('T')[0]).toBe('2024-02-26'); 
+    expect(weekDates[2].toISOString().split('T')[0]).toBe('2024-02-27'); 
+    expect(weekDates[3].toISOString().split('T')[0]).toBe('2024-02-28'); 
+    expect(weekDates[4].toISOString().split('T')[0]).toBe('2024-02-29'); 
+    expect(weekDates[5].toISOString().split('T')[0]).toBe('2024-03-01'); 
+    expect(weekDates[6].toISOString().split('T')[0]).toBe('2024-03-02'); 
+  });
 
-  it('월의 마지막 날짜를 포함한 주를 올바르게 처리한다', () => {});
-});
-
-describe('getWeeksAtMonth', () => {
-  it('2024년 7월 1일의 올바른 주 정보를 반환해야 한다', () => {});
+  it('월의 마지막 날짜를 포함한 주를 올바르게 처리한다', () => {
+    const date = new Date('2024-11-30');
+    const weekDates = getWeekDates(date);
+    expect(weekDates[0].toISOString().split('T')[0]).toBe('2024-11-24');
+    expect(weekDates[1].toISOString().split('T')[0]).toBe('2024-11-25');
+    expect(weekDates[2].toISOString().split('T')[0]).toBe('2024-11-26');
+    expect(weekDates[3].toISOString().split('T')[0]).toBe('2024-11-27');
+    expect(weekDates[4].toISOString().split('T')[0]).toBe('2024-11-28');
+    expect(weekDates[5].toISOString().split('T')[0]).toBe('2024-11-29');
+    expect(weekDates[6].toISOString().split('T')[0]).toBe('2024-11-30');
+  });
 });
 
 describe('getEventsForDay', () => {
