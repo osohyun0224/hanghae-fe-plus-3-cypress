@@ -32,6 +32,23 @@ describe('getDaysInMonth', () => {
     expect(getDaysInMonth(2024, 0)).toBe(31);
     expect(getDaysInMonth(2024, 20)).toBe(31);
   });
+  //추가
+  describe('경계값 테스트', () => {
+    it('0월은 이전 해의 12월로 처리되어 31일을 반환한다', () => {
+      expect(getDaysInMonth(2024, 0)).toBe(31);
+    });
+
+    it('13월은 다음 해의 1월로 처리되어 31일을 반환한다', () => {
+      expect(getDaysInMonth(2024, 13)).toBe(31);
+    });
+
+    it('매우 큰 월 숫자는 연도를 넘어 순환하여 처리된다', () => {
+      // 20월 = 1년 8월과 동일
+      expect(getDaysInMonth(2024, 20)).toBe(31); // 2025년 8월과 동일
+      // 25월 = 2년 1월과 동일
+      expect(getDaysInMonth(2024, 25)).toBe(31); // 2026년 1월과 동일
+    });
+  });
 });
 
 describe('getWeekDates', () => {
