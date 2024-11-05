@@ -90,9 +90,61 @@ describe('convertEventToDateRange', () => {
 });
 
 describe('isOverlapping', () => {
-  it('두 이벤트가 겹치는 경우 true를 반환한다', () => {});
+  it('두 이벤트가 겹치는 경우 true를 반환한다', () => {
+    const event1: Event = {
+      id: '1',
+      date: '2024-11-05',
+      startTime: '12:00',
+      endTime: '18:00',
+      title: '첫 번째 이벤트',
+      description: '',
+      location: '',
+      category: '',
+      repeat: { type: 'none', interval: 0 },
+      notificationTime: 0,
+    };
+    const event2: Event = {
+      id: '2',
+      date: '2024-11-05',
+      startTime: '14:00',
+      endTime: '16:00',
+      title: '두 번째 이벤트',
+      description: '',
+      location: '',
+      category: '',
+      repeat: { type: 'none', interval: 0 },
+      notificationTime: 0,
+    };
+    expect(isOverlapping(event1, event2)).toBe(true);
+  });
 
-  it('두 이벤트가 겹치지 않는 경우 false를 반환한다', () => {});
+  it('두 이벤트가 겹치지 않는 경우 false를 반환한다', () => {
+    const event1: Event = {
+      id: '1',
+      date: '2024-11-05',
+      startTime: '12:00',
+      endTime: '14:00',
+      title: '첫 번째 이벤트',
+      description: '',
+      location: '',
+      category: '',
+      repeat: { type: 'none', interval: 0 },
+      notificationTime: 0,
+    };
+    const event2: Event = {
+      id: '2',
+      date: '2024-11-05',
+      startTime: '15:00',
+      endTime: '16:00',
+      title: '두 번째 이벤트',
+      description: '',
+      location: '',
+      category: '',
+      repeat: { type: 'none', interval: 0 },
+      notificationTime: 0,
+    };
+    expect(isOverlapping(event1, event2)).toBe(false);
+  });
 });
 
 describe('findOverlappingEvents', () => {
