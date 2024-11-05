@@ -155,13 +155,91 @@ describe('getWeeksAtMonth', () => {
 });
 
 describe('getEventsForDay', () => {
-  it('특정 날짜(1일)에 해당하는 이벤트만 정확히 반환한다', () => {});
+  const events: Event[] = [
+    {
+      id: '1',
+      title: '영어 수업',
+      date: '2024-11-01',
+      startTime: '09:00',
+      endTime: '10:30',
+      description: '온라인 영어 회화',
+      location: '화상 회의실',
+      category: '학습',
+      repeat: {
+        type: 'weekly',
+        interval: 1,
+        endDate: '2024-12-31',
+      },
+      notificationTime: 15,
+    },
+    {
+      id: '2',
+      title: '병원 예약',
+      date: '2024-11-0',
+      startTime: '14:30',
+      endTime: '15:30',
+      description: '정기 건강 검진',
+      location: '서울 중앙 병원',
+      category: '건강',
+      repeat: {
+        type: 'yearly',
+        interval: 1,
+      },
+      notificationTime: 45,
+    },
+    {
+      id: '3',
+      title: '요가 클래스',
+      date: '2024-11-32',
+      startTime: '18:00',
+      endTime: '19:00',
+      description: '저녁 스트레칭 수업',
+      location: '웰니스 센터',
+      category: '운동',
+      repeat: {
+        type: 'none',
+        interval: 0,
+      },
+      notificationTime: 20,
+    },
+  ];
 
-  it('해당 날짜에 이벤트가 없을 경우 빈 배열을 반환한다', () => {});
+  it('특정 날짜(1일)에 해당하는 이벤트만 정확히 반환한다', () => {
+    const eventDay = getEventsForDay(events, 1);
+    expect(eventDay).toEqual([
+      {
+        id: '1',
+        title: '영어 수업',
+        date: '2024-11-01',
+        startTime: '09:00',
+        endTime: '10:30',
+        description: '온라인 영어 회화',
+        location: '화상 회의실',
+        category: '학습',
+        repeat: {
+          type: 'weekly',
+          interval: 1,
+          endDate: '2024-12-31',
+        },
+        notificationTime: 15,
+      },
+    ]);
+  });
 
-  it('날짜가 0일 경우 빈 배열을 반환한다', () => {});
+  it('해당 날짜에 이벤트가 없을 경우 빈 배열을 반환한다', () => {
+    const eventDay = getEventsForDay(events, 2);
+    expect(eventDay).toEqual([]);
+  });
 
-  it('날짜가 32일 이상인 경우 빈 배열을 반환한다', () => {});
+  it('날짜가 0일 경우 빈 배열을 반환한다', () => {
+    const eventDay = getEventsForDay(events, 0);
+    expect(eventDay).toEqual([]);
+  });
+
+  it('날짜가 32일 이상인 경우 빈 배열을 반환한다', () => {
+    const eventDay = getEventsForDay(events, 32);
+    expect(eventDay).toEqual([]);
+  });
 });
 
 describe('formatWeek', () => {
