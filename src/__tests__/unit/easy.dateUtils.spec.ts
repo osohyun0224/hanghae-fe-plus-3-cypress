@@ -141,6 +141,19 @@ describe('getWeekDates', () => {
   });
 });
 
+describe('getWeeksAtMonth', () => {
+  it('2024년 7월 1일의 올바른 주 정보를 반환해야 한다', () => {
+    const weeks = getWeeksAtMonth(new Date('2024-07-01'));
+    expect(weeks).toEqual([
+      [null, 1, 2, 3, 4, 5, 6],
+      [7, 8, 9, 10, 11, 12, 13],
+      [14, 15, 16, 17, 18, 19, 20],
+      [21, 22, 23, 24, 25, 26, 27],
+      [28, 29, 30, 31, null, null, null],
+    ]);
+  });
+});
+
 describe('getEventsForDay', () => {
   it('특정 날짜(1일)에 해당하는 이벤트만 정확히 반환한다', () => {});
 
