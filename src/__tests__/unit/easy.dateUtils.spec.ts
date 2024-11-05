@@ -95,7 +95,7 @@ describe('getWeekDates', () => {
   it('연도를 넘어가는 주의 날짜를 정확히 처리한다 (연말)', () => {
     const date = new Date('2024-12-29');
     const weekDates = getWeekDates(date);
-    expect(weekDates[0].toISOString().split('T')[0]).toBe('2024-12-29');     
+    expect(weekDates[0].toISOString().split('T')[0]).toBe('2024-12-29');
     expect(weekDates[1].toISOString().split('T')[0]).toBe('2024-12-30');
     expect(weekDates[2].toISOString().split('T')[0]).toBe('2024-12-31');
     expect(weekDates[3].toISOString().split('T')[0]).toBe('2025-01-01');
@@ -107,7 +107,7 @@ describe('getWeekDates', () => {
   it('연도를 넘어가는 주의 날짜를 정확히 처리한다 (연초)', () => {
     const date = new Date('2025-01-02');
     const weekDates = getWeekDates(date);
-    expect(weekDates[0].toISOString().split('T')[0]).toBe('2024-12-29');     
+    expect(weekDates[0].toISOString().split('T')[0]).toBe('2024-12-29');
     expect(weekDates[1].toISOString().split('T')[0]).toBe('2024-12-30');
     expect(weekDates[2].toISOString().split('T')[0]).toBe('2024-12-31');
     expect(weekDates[3].toISOString().split('T')[0]).toBe('2025-01-01');
@@ -119,13 +119,13 @@ describe('getWeekDates', () => {
   it('윤년의 2월 29일을 포함한 주를 올바르게 처리한다', () => {
     const date = new Date('2024-02-29');
     const weekDates = getWeekDates(date);
-    expect(weekDates[0].toISOString().split('T')[0]).toBe('2024-02-25');     
-    expect(weekDates[1].toISOString().split('T')[0]).toBe('2024-02-26'); 
-    expect(weekDates[2].toISOString().split('T')[0]).toBe('2024-02-27'); 
-    expect(weekDates[3].toISOString().split('T')[0]).toBe('2024-02-28'); 
-    expect(weekDates[4].toISOString().split('T')[0]).toBe('2024-02-29'); 
-    expect(weekDates[5].toISOString().split('T')[0]).toBe('2024-03-01'); 
-    expect(weekDates[6].toISOString().split('T')[0]).toBe('2024-03-02'); 
+    expect(weekDates[0].toISOString().split('T')[0]).toBe('2024-02-25');
+    expect(weekDates[1].toISOString().split('T')[0]).toBe('2024-02-26');
+    expect(weekDates[2].toISOString().split('T')[0]).toBe('2024-02-27');
+    expect(weekDates[3].toISOString().split('T')[0]).toBe('2024-02-28');
+    expect(weekDates[4].toISOString().split('T')[0]).toBe('2024-02-29');
+    expect(weekDates[5].toISOString().split('T')[0]).toBe('2024-03-01');
+    expect(weekDates[6].toISOString().split('T')[0]).toBe('2024-03-02');
   });
 
   it('월의 마지막 날짜를 포함한 주를 올바르게 처리한다', () => {
@@ -175,7 +175,7 @@ describe('getEventsForDay', () => {
     {
       id: '2',
       title: '병원 예약',
-      date: '2024-11-0',
+      date: '2024-11-05',
       startTime: '14:30',
       endTime: '15:30',
       description: '정기 건강 검진',
