@@ -148,7 +148,76 @@ describe('isOverlapping', () => {
 });
 
 describe('findOverlappingEvents', () => {
-  it('새 이벤트와 겹치는 모든 이벤트를 반환한다', () => {});
+  const Events: Event[] = [
+    {
+      id: '1',
+      date: '2024-11-05',
+      startTime: '12:00',
+      endTime: '14:00',
+      title: '첫 번째 이벤트',
+      description: '',
+      location: '',
+      category: '',
+      repeat: { type: 'none', interval: 0 },
+      notificationTime: 0,
+    },
+    {
+      id: '2',
+      date: '2024-11-05',
+      startTime: '15:00',
+      endTime: '17:00',
+      title: '두 번째 이벤트',
+      description: '',
+      location: '',
+      category: '',
+      repeat: { type: 'none', interval: 0 },
+      notificationTime: 0,
+    },
+    {
+      id: '3',
+      date: '2024-11-05',
+      startTime: '18:00',
+      endTime: '19:00',
+      title: '세 번째 이벤트',
+      description: '',
+      location: '',
+      category: '',
+      repeat: { type: 'none', interval: 0 },
+      notificationTime: 0,
+    },
+  ];
 
-  it('겹치는 이벤트가 없으면 빈 배열을 반환한다', () => {});
+  it('새 이벤트와 겹치는 모든 이벤트를 반환한다', () => {
+    const newEvent: Event = {
+      id: '4',
+      date: '2024-11-05',
+      startTime: '10:00',
+      endTime: '16:00',
+      title: '새 이벤트',
+      description: '',
+      location: '',
+      category: '',
+      repeat: { type: 'none', interval: 0 },
+      notificationTime: 0,
+    };
+    const result = findOverlappingEvents(newEvent, Events);
+    expect(result).toEqual([Events[0],Events[1]]);
+  });
+
+  it('겹치는 이벤트가 없으면 빈 배열을 반환한다', () => {
+    const newEvent: Event = {
+      id: '4',
+      date: '2024-11-05',
+      startTime: '20:00',
+      endTime: '22:00',
+      title: '겹치는게 없는 이벤트',
+      description: '',
+      location: '',
+      category: '',
+      repeat: { type: 'none', interval: 0 },
+      notificationTime: 0,
+    };
+    const result = findOverlappingEvents(newEvent, Events);
+    expect(result).toHaveLength(0);
+  });
 });
