@@ -34,11 +34,59 @@ describe('parseDateTime', () => {
 });
 
 describe('convertEventToDateRange', () => {
-  it('일반적인 이벤트를 올바른 시작 및 종료 시간을 가진 객체로 변환한다', () => {});
+  it('일반적인 이벤트를 올바른 시작 및 종료 시간을 가진 객체로 변환한다', () => {
+    const event: Event = {
+      id: '1',
+      date: '2024-11-05',
+      startTime: '14:30',
+      endTime: '15:30',
+      title: '일반적인 이벤트',
+      description: '',
+      location: '',
+      category: '',
+      repeat: { type: 'none', interval: 0 },
+      notificationTime: 0,
+    };
+    const result = convertEventToDateRange(event);
+    expect(result.start).toEqual(new Date('2024-11-05T14:30:00'));
+    expect(result.end).toEqual(new Date('2024-11-05T15:30:00'));
+  });
 
-  it('잘못된 날짜 형식의 이벤트에 대해 Invalid Date를 반환한다', () => {});
+  it('잘못된 날짜 형식의 이벤트에 대해 Invalid Date를 반환한다', () => {
+    const event: Event = {
+      id: '1',
+      date: '2024~11~05',
+      startTime: '14:30',
+      endTime: '15:30',
+      title: '잘못된 날짜 형식 이벤트',
+      description: '',
+      location: '',
+      category: '',
+      repeat: { type: 'none', interval: 0 },
+      notificationTime: 0,
+    };
+    const result = convertEventToDateRange(event);
+    expect(result.start.toString()).toBe('Invalid Date');
+    expect(result.end.toString()).toBe('Invalid Date');
+  });
 
-  it('잘못된 시간 형식의 이벤트에 대해 Invalid Date를 반환한다', () => {});
+  it('잘못된 시간 형식의 이벤트에 대해 Invalid Date를 반환한다', () => {
+    const event: Event = {
+      id: '1',
+      date: '2024-11-05',
+      startTime: '14:70',
+      endTime: '15:70',
+      title: '잘못된 시간 형식 이벤트',
+      description: '',
+      location: '',
+      category: '',
+      repeat: { type: 'none', interval: 0 },
+      notificationTime: 0,
+    };
+    const result = convertEventToDateRange(event);
+    expect(result.start.toString()).toBe('Invalid Date');
+    expect(result.end.toString()).toBe('Invalid Date');
+  });
 });
 
 describe('isOverlapping', () => {
