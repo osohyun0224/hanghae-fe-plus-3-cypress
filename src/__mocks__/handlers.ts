@@ -20,19 +20,19 @@ export const handlers = [
   http.put('/api/events/:id', async ({ params, request }) => {
     const { id } = params;
     const updatedEvent = (await request.json()) as Event;
-    const index = events.findIndex(event => event.id === id);
-    
+    const index = events.findIndex((event) => event.id === id);
+
     if (index !== -1) {
       events[index] = { ...events[index], ...updatedEvent };
       return HttpResponse.json(events[index]);
     }
     return new HttpResponse(null, { status: 404 });
   }),
-  
+
   http.delete('/api/events/:id', ({ params }) => {
     const { id } = params;
-    const index = events.findIndex(event => event.id === id);
-    
+    const index = events.findIndex((event) => event.id === id);
+
     if (index !== -1) {
       events.splice(index, 1);
       return new HttpResponse(null, { status: 204 });

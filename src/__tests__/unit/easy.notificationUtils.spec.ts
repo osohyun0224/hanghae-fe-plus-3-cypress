@@ -58,7 +58,7 @@ describe('getUpcomingEvents', () => {
     expect(upcomingEvents).toHaveLength(0);
   });
 
-// 추가 테스트 케이스
+  // 추가 테스트 케이스
   it('알림 시간이 다가온 이벤트를 반환한다', () => {
     const date = new Date('2024-11-03T12:50:00');
     const upcomingEvents = getUpcomingEvents(events, date, []);

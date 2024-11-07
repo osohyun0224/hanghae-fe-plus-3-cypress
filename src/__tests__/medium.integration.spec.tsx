@@ -434,7 +434,6 @@ describe('일정 충돌', () => {
 
     await user.click(screen.getByRole('button', { name: /일정 추가/ }));
 
-
     expect(screen.getByText('일정 겹침 경고')).toBeInTheDocument();
   });
 

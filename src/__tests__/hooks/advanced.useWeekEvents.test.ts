@@ -76,8 +76,12 @@ describe('useWeekEvents', () => {
 
     expect(eventsForNov1).toHaveLength(3);
     expect(eventsForNov2).toHaveLength(1);
-    expect(eventsForNov1.map(e => e.title)).toEqual(['첫 번째 이벤트', '두 번째 이벤트', '반복 이벤트']);
-    expect(eventsForNov2.map(e => e.title)).toContain('다른 날의 이벤트');
+    expect(eventsForNov1.map((e) => e.title)).toEqual([
+      '첫 번째 이벤트',
+      '두 번째 이벤트',
+      '반복 이벤트',
+    ]);
+    expect(eventsForNov2.map((e) => e.title)).toContain('다른 날의 이벤트');
   });
 
   it('알림이 있는 이벤트를 올바르게 표시해야 한다', () => {
@@ -108,7 +112,11 @@ describe('useWeekEvents', () => {
     const eventsForNov1 = result.current.getEventsForDate(new Date('2024-11-01T23:59:59'));
 
     expect(eventsForNov1).toHaveLength(3);
-    expect(eventsForNov1.map((e) => e.title)).toEqual(['첫 번째 이벤트', '두 번째 이벤트', '반복 이벤트']);
+    expect(eventsForNov1.map((e) => e.title)).toEqual([
+      '첫 번째 이벤트',
+      '두 번째 이벤트',
+      '반복 이벤트',
+    ]);
   });
 
   it('이벤트가 시간 순서대로 정렬된다', () => {
@@ -117,6 +125,6 @@ describe('useWeekEvents', () => {
 
     const eventsForNov1 = result.current.getEventsForDate(new Date('2024-11-01'));
 
-    expect(eventsForNov1.map(e => e.startTime)).toEqual(['10:00', '14:00', '16:00']);
+    expect(eventsForNov1.map((e) => e.startTime)).toEqual(['10:00', '14:00', '16:00']);
   });
 });

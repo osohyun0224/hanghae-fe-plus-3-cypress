@@ -1,6 +1,7 @@
 import { act, renderHook } from '@testing-library/react';
-import { setupDateMock, cleanupDateMock } from '../dateTestUtils.ts';
+
 import { useCalendarView } from '../../hooks/useCalendarView.ts';
+import { setupDateMock, cleanupDateMock } from '../dateTestUtils.ts';
 import { assertDate } from '../utils.ts';
 
 beforeEach(() => {
@@ -45,7 +46,7 @@ it("view를 'month' 뷰에서 'week'으로 변경 시 view 상태가 정상적�
   expect(result.current.view).toBe('week');
 });
 
-//테케 추가
+// 테스트 케이스 추가
 it("view를 'month'로 다시 변경할 수 있다", () => {
   const { result } = renderHook(() => useCalendarView());
   act(() => {

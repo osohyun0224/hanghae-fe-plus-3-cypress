@@ -201,7 +201,7 @@ describe('findOverlappingEvents', () => {
       notificationTime: 0,
     };
     const result = findOverlappingEvents(newEvent, Events);
-    expect(result).toEqual([Events[0],Events[1]]);
+    expect(result).toEqual([Events[0], Events[1]]);
   });
 
   it('겹치는 이벤트가 없으면 빈 배열을 반환한다', () => {
