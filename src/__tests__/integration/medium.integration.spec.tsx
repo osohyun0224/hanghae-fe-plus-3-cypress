@@ -6,8 +6,8 @@ import {
   setupMockHandlerCreation,
   setupMockHandlerUpdating,
   setupMockHandlerDeletion,
-} from '../__mocks__/handlersUtils';
-import App from '../App';
+} from '../../__mocks__/handlersUtils';
+import App from '../../App';
 
 const renderApp = () => {
   return render(

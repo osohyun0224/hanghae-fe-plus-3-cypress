@@ -3,10 +3,10 @@ import { render, screen, waitFor, within } from '@testing-library/react';
 import { UserEvent, userEvent } from '@testing-library/user-event';
 import React from 'react';
 
-import { setupMockHandlerCreation, setupMockHandlerUpdating } from '../__mocks__/handlersUtils';
-import App from '../App';
-import MonthView from '../components/schedule/MonthView';
-import WeekView from '../components/schedule/WeekView';
+import { setupMockHandlerCreation, setupMockHandlerUpdating } from '../../__mocks__/handlersUtils';
+import App from '../../App';
+import MonthView from '../../components/schedule/MonthView';
+import WeekView from '../../components/schedule/WeekView';
 
 const renderWithComponent = (ui: React.ReactElement) => {
   return render(<ChakraProvider>{ui}</ChakraProvider>);
