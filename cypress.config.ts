@@ -15,7 +15,7 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       mochawesome(on);
     },
-    baseUrl: 'http://localhost:5173',
+    baseUrl: 'http://localhost:3000',
     supportFile: false,
     specPattern: 'cypress/{e2e,component}/**/*.cy.{js,jsx,ts,tsx}',
     reporter: 'cypress-mochawesome-reporter',
