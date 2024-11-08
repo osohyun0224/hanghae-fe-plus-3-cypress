@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import React from 'react';
 
 import { Event } from '../../types';
-import WeekView from '../WeekView';
+import WeekView from '../schedule/WeekView';
 
 const renderWithChakra = (ui: React.ReactElement) => {
   return render(<ChakraProvider>{ui}</ChakraProvider>);

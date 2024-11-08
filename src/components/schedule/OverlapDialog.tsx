@@ -10,7 +10,7 @@ import {
 } from '@chakra-ui/react';
 import { RefObject } from 'react';
 
-import { Event } from '../types';
+import { Event } from '../../types';
 
 interface OverlapDialogProps {
   isOpen: boolean;

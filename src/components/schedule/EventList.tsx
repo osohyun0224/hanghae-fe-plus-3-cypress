@@ -11,8 +11,8 @@ import {
   VStack,
 } from '@chakra-ui/react';
 
-import { notificationOptions } from '../constants';
-import { Event } from '../types';
+import { notificationOptions } from '../../constants';
+import { Event } from '../../types';
 
 interface EventListProps {
   searchTerm: string;
