@@ -12,12 +12,10 @@ export default defineConfig({
   },
   e2e: {
     setupNodeEvents(on, config) {
-      // mochawesome 리포터 설정
       mochawesome(on);
-
-      // 기타 노드 이벤트 설정
     },
-    baseUrl: 'http://localhost:5173', // 예시 URL
+    baseUrl: 'http://localhost:5173',
+    supportFile: false,
     reporter: 'cypress-mochawesome-reporter',
     reporterOptions: {
       reportDir: 'cypress/reports',
@@ -25,6 +23,5 @@ export default defineConfig({
       html: true,
       json: true,
     },
-    // 기타 설정 옵션
   },
 });
