@@ -103,7 +103,7 @@ describe('일정 CRUD 및 기본 기능', () => {
     await user.click(editButton);
 
     await user.clear(screen.getByLabelText(/제목/));
-    await user.type(screen.getByLabelText(/제목/), '긴급 장애대응');
+    await user.type(screen.getByLabelText(/제목/), '해리와 1-on-1');
 
     await user.clear(screen.getByLabelText(/날짜/));
     await user.type(screen.getByLabelText(/날짜/), '2024-11-03');
@@ -115,25 +115,25 @@ describe('일정 CRUD 및 기본 기능', () => {
     await user.type(screen.getByLabelText(/종료 시간/), '13:00');
 
     await user.clear(screen.getByLabelText(/설명/));
-    await user.type(screen.getByLabelText(/설명/), '긴급 장애대응 팀 회의');
+    await user.type(screen.getByLabelText(/설명/), '해리가 1-on-1을 요청함');
 
     await user.clear(screen.getByLabelText(/위치/));
-    await user.type(screen.getByLabelText(/위치/), '회의실');
+    await user.type(screen.getByLabelText(/위치/), '누누커피');
 
-    await user.selectOptions(screen.getByLabelText(/카테고리/), '업무');
+    await user.selectOptions(screen.getByLabelText(/카테고리/), '개인');
 
     await user.click(screen.getByRole('button', { name: /일정 수정/ }));
 
     const updatedEventList = await screen.findByTestId('event-list');
 
     await waitFor(() => {
-      expect(within(updatedEventList).getByText('긴급 장애대응')).toBeInTheDocument();
+      expect(within(updatedEventList).getByText('해리와 1-on-1')).toBeInTheDocument();
       expect(within(updatedEventList).getByText('2024-11-03')).toBeInTheDocument();
       expect(within(updatedEventList).getByText(/12:00/)).toBeInTheDocument();
       expect(within(updatedEventList).getByText(/13:00/)).toBeInTheDocument();
-      expect(within(updatedEventList).getByText('긴급 장애대응 팀 회의')).toBeInTheDocument();
-      expect(within(updatedEventList).getByText('회의실')).toBeInTheDocument();
-      expect(within(updatedEventList).getByText(/업무/)).toBeInTheDocument();
+      expect(within(updatedEventList).getByText('해리가 1-on-1을 요청함')).toBeInTheDocument();
+      expect(within(updatedEventList).getByText('누누커피')).toBeInTheDocument();
+      expect(within(updatedEventList).getByText(/개인/)).toBeInTheDocument();
     });
   });
 
