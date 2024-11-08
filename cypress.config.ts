@@ -15,7 +15,8 @@ export default defineConfig({
       mochawesome(on);
     },
     baseUrl: 'http://localhost:5173',
-    supportFile: false,
+    supportFile: 'cypress/support/e2e.ts',
+    specPattern: 'cypress/{e2e,component}/**/*.cy.{js,jsx,ts,tsx}',
     reporter: 'cypress-mochawesome-reporter',
     reporterOptions: {
       reportDir: 'cypress/reports',
