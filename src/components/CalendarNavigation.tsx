@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { IconButton, Select, HStack } from '@chakra-ui/react';
 import React from 'react';

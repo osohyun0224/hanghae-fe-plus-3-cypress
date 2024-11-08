@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Alert, AlertIcon, AlertTitle, Box, CloseButton, VStack } from '@chakra-ui/react';
 
 interface Notification {
