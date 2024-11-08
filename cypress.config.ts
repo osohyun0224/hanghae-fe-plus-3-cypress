@@ -3,6 +3,7 @@ import { defineConfig } from 'cypress';
 import mochawesome from 'cypress-mochawesome-reporter/plugin';
 
 export default defineConfig({
+  projectId: 'qos6rs',
   component: {
     supportFile: 'cypress/support/component.ts',
     devServer: {
@@ -15,7 +16,7 @@ export default defineConfig({
       mochawesome(on);
     },
     baseUrl: 'http://localhost:5173',
-    supportFile: 'cypress/support/e2e.ts',
+    supportFile: false,
     specPattern: 'cypress/{e2e,component}/**/*.cy.{js,jsx,ts,tsx}',
     reporter: 'cypress-mochawesome-reporter',
     reporterOptions: {
