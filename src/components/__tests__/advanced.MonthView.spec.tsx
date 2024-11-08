@@ -2,8 +2,8 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 
-import { Event } from '../../types';
 import MonthView from '../../components/schedule/MonthView';
+import { Event } from '../../types';
 
 const renderWithChakra = (ui: React.ReactElement) => {
   return render(<ChakraProvider>{ui}</ChakraProvider>);

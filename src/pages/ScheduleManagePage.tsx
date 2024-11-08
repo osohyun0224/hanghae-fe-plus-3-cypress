@@ -13,13 +13,13 @@ import {
 } from '@chakra-ui/react';
 import { useRef, useState } from 'react';
 
+import NotificationList from '../components/notification/NotificationList';
 import CalendarNavigation from '../components/schedule/CalendarNavigation';
 import EventList from '../components/schedule/EventList';
 import MonthView from '../components/schedule/MonthView';
-import NotificationList from '../components/notification/NotificationList';
 import OverlapDialog from '../components/schedule/OverlapDialog';
-import TimeInputs from '../components/time/TimeInputs';
 import WeekView from '../components/schedule/WeekView';
+import TimeInputs from '../components/time/TimeInputs';
 import { notificationOptions, categories } from '../constants';
 import { useCalendarView } from '../hooks/useCalendarView.ts';
 import { useEventForm } from '../hooks/useEventForm.ts';
