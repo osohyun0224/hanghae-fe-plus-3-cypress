@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { mount } from '@cypress/react18';
 import { ChakraProvider } from '@chakra-ui/react';
+import { mount } from '@cypress/react18';
+import React, { useState } from 'react';
+
 import CalendarNavigation from '../../src/components/schedule/CalendarNavigation';
 
 describe('CalendarNavigation.cy.tsx', () => {
@@ -54,4 +55,4 @@ describe('CalendarNavigation.cy.tsx', () => {
     cy.wrap(onViewChange).its('firstCall').should('have.been.calledWith', 'month');
     cy.wrap(onViewChange).its('secondCall').should('have.been.calledWith', 'week');
   });
-}); 
+});

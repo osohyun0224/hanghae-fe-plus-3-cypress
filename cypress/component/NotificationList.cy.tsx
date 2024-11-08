@@ -1,14 +1,12 @@
-import React from 'react';
-import { mount } from '@cypress/react18';
 import { ChakraProvider } from '@chakra-ui/react';
+import { mount } from '@cypress/react18';
+import React from 'react';
+
 import NotificationList from '../../src/components/notification/NotificationList';
 
 describe('NotificationList.cy.tsx', () => {
   it('알림을 표시하고 닫기 버튼 클릭을 처리해야 한다.', () => {
-    const notifications = [
-      { message: '알림 1' },
-      { message: '알림 2' },
-    ];
+    const notifications = [{ message: '알림 1' }, { message: '알림 2' }];
 
     const onClose = cy.stub();
 
@@ -41,11 +39,7 @@ describe('NotificationList.cy.tsx', () => {
   });
 
   it('여러 알림의 닫기 버튼을 순차적으로 클릭할 수 있어야 한다.', () => {
-    const notifications = [
-      { message: '알림 1' },
-      { message: '알림 2' },
-      { message: '알림 3' },
-    ];
+    const notifications = [{ message: '알림 1' }, { message: '알림 2' }, { message: '알림 3' }];
 
     const onClose = cy.stub();
 

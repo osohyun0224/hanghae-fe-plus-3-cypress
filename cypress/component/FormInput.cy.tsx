@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { mount } from '@cypress/react18';
 import { ChakraProvider } from '@chakra-ui/react';
+import { mount } from '@cypress/react18';
+import React, { useState } from 'react';
+
 import FormInput from '../../src/components/common/FormInput';
 
 const FormInputWrapper = ({ label, initialValue }: { label: string; initialValue: string }) => {
@@ -48,4 +49,4 @@ describe('FormInput.cy.tsx', () => {
 
     cy.get('input').should('have.value', inputText);
   });
-}); 
+});

@@ -1,6 +1,7 @@
-import React, { useRef } from 'react';
-import { mount } from '@cypress/react18';
 import { ChakraProvider } from '@chakra-ui/react';
+import { mount } from '@cypress/react18';
+import React, { useRef } from 'react';
+
 import OverlapDialog from '../../src/components/schedule/OverlapDialog';
 import { Event } from '../../src/types';
 
@@ -66,7 +67,9 @@ describe('OverlapDialog.cy.tsx', () => {
     cy.get('[data-testid="overlap-warning"]').should('contain', '다음 일정과 겹칩니다:');
 
     overlappingEvents.forEach((event) => {
-      cy.contains(`${event.title} (${event.date} ${event.startTime}-${event.endTime})`).should('be.visible');
+      cy.contains(`${event.title} (${event.date} ${event.startTime}-${event.endTime})`).should(
+        'be.visible'
+      );
     });
 
     cy.get('[data-testid="confirm-message"]').should('contain', '계속 진행하시겠습니까?');
