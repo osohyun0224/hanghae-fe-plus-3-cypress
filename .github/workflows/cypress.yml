@@ -26,17 +26,12 @@ jobs:
         with:
           node-version: 20
           cache: 'pnpm'
-      - name: Cache Cypress binary
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/Cypress
-          key: ${{ runner.os }}-cypress-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-cypress-
       - name: Install dependencies
         run: pnpm install
-      - name: Install Cypress binary
-        run: pnpm exec cypress install
+      - name: Start server
+        run: pnpm dev &
+      - name: Wait for server to be ready
+        run: npx wait-on http://localhost:5173
       - name: Run Cypress tests
         run: pnpm run cypress:run
         env:
