@@ -1,14 +1,10 @@
 import { ChakraProvider } from '@chakra-ui/react';
 import { render, screen, waitFor, within } from '@testing-library/react';
 import { UserEvent, userEvent } from '@testing-library/user-event';
-
-import {
-  setupMockHandlerCreation,
-  setupMockHandlerUpdating,
-} from '../__mocks__/handlersUtils';
-import App from '../App';
 import React from 'react';
 
+import { setupMockHandlerCreation, setupMockHandlerUpdating } from '../__mocks__/handlersUtils';
+import App from '../App';
 import MonthView from '../components/schedule/MonthView';
 import WeekView from '../components/schedule/WeekView';
 
@@ -80,12 +76,13 @@ describe('MonthView 컴포넌트 통합 테스트', () => {
       events: [newEvent],
     };
 
-    renderWithComponent(<MonthView holidays={{}} notifiedEvents={[]} filteredEvents={[]} {...mockProps} />);
+    renderWithComponent(
+      <MonthView holidays={{}} notifiedEvents={[]} filteredEvents={[]} {...mockProps} />
+    );
 
     const eventTitles = screen.getAllByText('해리와 과제하기');
     expect(eventTitles.length).toBeGreaterThan(0);
   });
-
 
   it('기존 일정의 세부 정보를 수정하고 변경사항이 반영되어야하고, 월간 달력에도 정확히 표시되어야 한다.', async () => {
     setupMockHandlerUpdating([
@@ -159,7 +156,9 @@ describe('MonthView 컴포넌트 통합 테스트', () => {
       events: [eventList],
     };
 
-    renderWithComponent(<MonthView holidays={{}} notifiedEvents={[]} filteredEvents={[]} {...mockProps} />);
+    renderWithComponent(
+      <MonthView holidays={{}} notifiedEvents={[]} filteredEvents={[]} {...mockProps} />
+    );
 
     const eventTitles = screen.getAllByText('해리와 1-on-1');
     expect(eventTitles.length).toBeGreaterThan(0);
@@ -217,7 +216,6 @@ describe('WeekView 컴포넌트 통합 테스트', () => {
     const eventTitles = screen.getAllByText('해리와 과제하기');
     expect(eventTitles.length).toBeGreaterThan(0);
   });
-
 
   it('기존 일정의 세부 정보를 수정하고 변경사항이 반영되어야하고, 주간 달력에도 정확히 표시되어야 한다.', async () => {
     setupMockHandlerUpdating([
